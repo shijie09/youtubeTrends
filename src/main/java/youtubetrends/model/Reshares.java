@@ -1,4 +1,4 @@
-package blog.model;
+package youtubetrends.model;
 
 public class Reshares {
 	protected int reshareId;

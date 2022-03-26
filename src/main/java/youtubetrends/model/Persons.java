@@ -1,4 +1,4 @@
-package blog.model;
+package youtubetrends.model;
 
 /**
  * Persons is a simple, plain old java objects (POJO).

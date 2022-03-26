@@ -1,4 +1,4 @@
-package blog.model;
+package youtubetrends.model;
 
 import java.util.Date;
 

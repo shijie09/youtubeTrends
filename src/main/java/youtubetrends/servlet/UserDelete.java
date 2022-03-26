@@ -1,7 +1,7 @@
-package blog.servlet;
+package youtubetrends.servlet;
 
-import blog.dal.*;
-import blog.model.*;
+import youtubetrends.dal.*;
+import youtubetrends.model.*;
 
 import java.io.IOException;
 import java.sql.SQLException;

@@ -1,4 +1,4 @@
-package blog.dal;
+package youtubetrends.dal;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -36,7 +36,7 @@ public class ConnectionManager {
 	// User to connect to your database instance. By default, this is "root2".
 	private final String user = "root";
 	// Password for the user.
-	private final String password = "Luoyang108";
+	private final String password = "1234";
 	// URI to your database server. If running on the same machine, then this is "localhost".
 	private final String hostName = "localhost";
 	// Port to your database server. By default, this is 3307.

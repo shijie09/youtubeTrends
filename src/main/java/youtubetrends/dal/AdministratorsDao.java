@@ -1,6 +1,6 @@
-package blog.dal;
+package youtubetrends.dal;
 
-import blog.model.*;
+import youtubetrends.model.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

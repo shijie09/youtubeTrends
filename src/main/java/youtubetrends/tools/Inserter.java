@@ -1,13 +1,13 @@
-package blog.tools;
+package youtubetrends.tools;
 
-import blog.dal.*;
-import blog.model.*;
+import youtubetrends.dal.*;
+import youtubetrends.model.*;
 
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
-// hope works 
+
 /**
  * main() runner, used for the app demo.
  * 
