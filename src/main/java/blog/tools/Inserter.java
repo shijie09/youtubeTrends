@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
-// work?
+// hope works 
 /**
  * main() runner, used for the app demo.
  * 
