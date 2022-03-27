@@ -1,5 +1,9 @@
 package youtubetrends.dal;
 
+import blog.model.Categories;
+import blog.model.Countries;
+import blog.model.Users;
+import blog.model.Videos;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,8 +12,7 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import youtubetrends.model.Users;
-import youtubetrends.model.Videos;
+
 
 public class VideosDao {
 
@@ -49,9 +52,9 @@ public class VideosDao {
       insertStmt.setBoolean(10, videos.isRatingsDisabled());
       insertStmt.setBoolean(11, videos.isVideoErrorOrRemoved());
       insertStmt.setString(12, videos.getDescription());
-      insertStmt.setString(13, videos.getCategory().getCategoryId());
-      insertStmt.setString(14, videos.getCountry().getCountryId());
-      insertStmt.setString(15, videos.getUser().getUserId());
+      insertStmt.setInt(13, videos.getCategoryId().getCategoryId());
+      insertStmt.setInt(14, videos.getCountryId().getCountryId());
+      insertStmt.setInt(15, videos.getUserId().getUserId());
       insertStmt.executeUpdate();
 
       // Retrieve the auto-generated key and set it, so it can be used by the caller.
@@ -130,12 +133,12 @@ public class VideosDao {
         boolean ratingsDisabled = results.getBoolean("RatingsDisabled");
         boolean videoErrorOrRemoved = results.getBoolean("VideoErrorOrRemoved");
         String description = results.getString("Description");
-        Categories categories = categoriesDao.getCategoriesById(results.getInt("CategoryId"));
-        Countries countries = countriesDao.getCountriesById(results.getInt("CountryId"));
-        Users user = usersDao.getUsersById(results.getInt("UserId"));
+        Categories categories = categoriesDao.getCategoryByCategoryId(results.getInt("CategoryId"));
+        Countries countries = countriesDao.getCountryByCountryId(results.getInt("CountryId"));
+        Users user = usersDao.getUserByUserId(results.getInt("UserId"));
         Videos reshare = new Videos(title, trendingDate, publishTime, tags, views, commentCount,
             thumbnailLink, dislikes, commentsDisabled, ratingsDisabled, videoErrorOrRemoved,
-            description, categoryId, userId, countryId);
+            description, categories, user, countries);
         return reshare;
       }
     } catch (SQLException e) {
@@ -184,12 +187,12 @@ public class VideosDao {
         boolean ratingsDisabled = results.getBoolean("RatingsDisabled");
         boolean videoErrorOrRemoved = results.getBoolean("VideoErrorOrRemoved");
         String description = results.getString("Description");
-        Categories categories = categoriesDao.getCategoriesById(results.getInt("CategoryId"));
-        Countries countries = countriesDao.getCountriesById(results.getInt("CountryId"));
-        Users user = usersDao.getUsersById(results.getInt("UserId"));
+        Categories categories = categoriesDao.getCategoryByCategoryId(results.getInt("CategoryId"));
+        Countries countries = countriesDao.getCountryByCountryId(results.getInt("CountryId"));
+        Users user = usersDao.getUserByUserId(results.getInt("UserId"));
         Videos reshare = new Videos(title2, trendingDate, publishTime, tags, views, commentCount,
             thumbnailLink, dislikes, commentsDisabled, ratingsDisabled, videoErrorOrRemoved,
-            description, categoryId, userId, countryId);
+            description, categories, user, countries);
         persons.add(reshare);
       }
     } catch (SQLException e) {

@@ -1,51 +1,72 @@
 package youtubetrends.model;
 
-/**
- * Persons is a simple, plain old java objects (POJO).
- * 
- * Persons/PersonsDao is the superclass for Administrators/AdministratorsDao and
- * BlogUsers/BlogUsersDao. Our implementation of Persons is a concrete class. This allows 
- * us to create records in the Persons MySQL table without having the associated records
- * in the Administrators or BlogUsers MySQL tables. Alternatively, Persons could be an
- * interface or an abstract class, which would force a Persons record to be created only
- * if an Administrators or BlogUsers record is created, too.
- */
 public class Persons {
-	protected String userName;
-	protected String firstName;
-	protected String lastName;
-	
-	public Persons(String userName, String firstName, String lastName) {
-		this.userName = userName;
-		this.firstName = firstName;
-		this.lastName = lastName;
-	}
-	
-	public Persons(String userName) {
-		this.userName = userName;
-	}
 
-	public String getUserName() {
-		return userName;
-	}
+  protected int userId;
+  protected String firstName;
+  protected String lastName;
 
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+  /**
+   * @param userId
+   * @param firstName
+   * @param lastName
+   */
+  public Persons(int userId, String firstName, String lastName) {
+    this.userId = userId;
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
 
-	public String getFirstName() {
-		return firstName;
-	}
+  public Persons(String firstName, String lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+  public Persons(int userId) {
+    this.userId = userId;
+  }
 
-	public String getLastName() {
-		return lastName;
-	}
+  /**
+   * @return the userId
+   */
+  public int getUserId() {
+    return userId;
+  }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+  /**
+   * @param userId the userId to set
+   */
+  public void setUserId(int userId) {
+    this.userId = userId;
+  }
+
+  /**
+   * @return the firstName
+   */
+  public String getFirstName() {
+    return firstName;
+  }
+
+  /**
+   * @param firstName the firstName to set
+   */
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+  /**
+   * @return the lastName
+   */
+  public String getLastName() {
+    return lastName;
+  }
+
+  /**
+   * @param lastName the lastName to set
+   */
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
+
+
 }

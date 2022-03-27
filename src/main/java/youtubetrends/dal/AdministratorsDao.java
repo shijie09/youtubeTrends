@@ -1,7 +1,7 @@
 package youtubetrends.dal;
 
-import youtubetrends.model.*;
-
+import blog.model.Administrators;
+import blog.model.Persons;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,175 +11,174 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-// hdisuhdi
-/**
- * Data access object (DAO) class to interact with the underlying Administrators table in your
- * MySQL instance. This is used to store {@link Administrators} into your MySQL instance and 
- * retrieve {@link Administrators} from MySQL instance.
- */
+
 public class AdministratorsDao extends PersonsDao {
-	// Single pattern: instantiation is limited to one object.
-	private static AdministratorsDao instance = null;
-	protected AdministratorsDao() {
-		super();
-	}
-	public static AdministratorsDao getInstance() {
-		if(instance == null) {
-			instance = new AdministratorsDao();
-		}
-		return instance;
-	}
-	
-	public Administrators create(Administrators administrator) throws SQLException {
-		// Insert into the superclass table first.
-		create(new Persons(administrator.getUserName(), administrator.getFirstName(),
-			administrator.getLastName()));
 
-		String insertAdministrator = "INSERT INTO Administrators(UserName,LastLogin) VALUES(?,?);";
-		Connection connection = null;
-		PreparedStatement insertStmt = null;
-		try {
-			connection = connectionManager.getConnection();
-			insertStmt = connection.prepareStatement(insertAdministrator);
-			insertStmt.setString(1, administrator.getUserName());
-			insertStmt.setTimestamp(2, new Timestamp(administrator.getLastLogin().getTime()));
-			insertStmt.executeUpdate();
-			return administrator;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw e;
-		} finally {
-			if(connection != null) {
-				connection.close();
-			}
-			if(insertStmt != null) {
-				insertStmt.close();
-			}
-		}
-	}
+  private static AdministratorsDao instance = null;
 
-	/**
-	 * Update the LastName of the Administrators instance.
-	 * This runs a UPDATE statement.
-	 */
-	public Administrators updateLastName(Administrators administrator, String newLastName) throws SQLException {
-		// The field to update only exists in the superclass table, so we can
-		// just call the superclass method.
-		super.updateLastName(administrator, newLastName);
-		return administrator;
-	}
+  protected AdministratorsDao() {
+    super();
+  }
 
-	/**
-	 * Delete the Administrators instance.
-	 * This runs a DELETE statement.
-	 */
-	public Administrators delete(Administrators administrator) throws SQLException {
-		String deleteAdministrator = "DELETE FROM Administrators WHERE UserName=?;";
-		Connection connection = null;
-		PreparedStatement deleteStmt = null;
-		try {
-			connection = connectionManager.getConnection();
-			deleteStmt = connection.prepareStatement(deleteAdministrator);
-			deleteStmt.setString(1, administrator.getUserName());
-			deleteStmt.executeUpdate();
+  public static AdministratorsDao getInstance() {
+    if (instance == null) {
+      instance = new AdministratorsDao();
+    }
+    return instance;
+  }
 
-			// Then also delete from the superclass.
-			// Note: due to the fk constraint (ON DELETE CASCADE), we could simply call
-			// super.delete() without even needing to delete from Administrators first.
-			super.delete(administrator);
+  public Administrators create(Administrators administrators) throws SQLException {
+    create(new Persons(administrators.getUserId(), administrators.getFirstName(),
+        administrators.getLastName()));
+    String insertAdministrators = "INSERT INTO Administrators(UserId, LastLogin) VALUES(?,?);";
+    Connection connection = null;
+    PreparedStatement insertStmt = null;
+    try {
+      connection = connectionManager.getConnection();
+      insertStmt = connection.prepareStatement(insertAdministrators);
 
-			return null;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw e;
-		} finally {
-			if(connection != null) {
-				connection.close();
-			}
-			if(deleteStmt != null) {
-				deleteStmt.close();
-			}
-		}
-	}
-	
-	public Administrators getAdministratorFromUserName(String userName) throws SQLException {
-		// To build an Administrator object, we need the Persons record, too.
-		String selectAdministrator =
-			"SELECT Administrators.UserName AS UserName, FirstName, LastName, LastLogin " +
-			"FROM Administrators INNER JOIN Persons " +
-			"  ON Administrators.UserName = Persons.UserName " +
-			"WHERE Administrators.UserName=?;";
-		Connection connection = null;
-		PreparedStatement selectStmt = null;
-		ResultSet results = null;
-		try {
-			connection = connectionManager.getConnection();
-			selectStmt = connection.prepareStatement(selectAdministrator);
-			selectStmt.setString(1, userName);
-			results = selectStmt.executeQuery();
-			if(results.next()) {
-				String resultUserName = results.getString("UserName");
-				String firstName = results.getString("FirstName");
-				String lastName = results.getString("LastName");
-				Date lastLogin = new Date(results.getTimestamp("LastLogin").getTime());
-				Administrators administrator = new Administrators(resultUserName, firstName, lastName, lastLogin);
-				return administrator;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw e;
-		} finally {
-			if(connection != null) {
-				connection.close();
-			}
-			if(selectStmt != null) {
-				selectStmt.close();
-			}
-			if(results != null) {
-				results.close();
-			}
-		}
-		return null;
-	}
+      insertStmt.setInt(1, administrators.getUserId());
+      insertStmt.setTimestamp(2, new Timestamp(administrators.getLastLogin().getTime()));
+      insertStmt.executeUpdate();
+      return administrators;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      throw e;
+    } finally {
+      if (connection != null) {
+        connection.close();
+      }
+      if (insertStmt != null) {
+        insertStmt.close();
+      }
+    }
+  }
 
-	public List<Administrators> getAdministratorsFromFirstName(String firstName)
-			throws SQLException {
-		List<Administrators> administrators = new ArrayList<Administrators>();
-		String selectAdministrators =
-			"SELECT Administrators.UserName AS UserName, FirstName, LastName, LastLogin " +
-			"FROM Administrators INNER JOIN Persons " +
-			"  ON Administrators.UserName = Persons.UserName " +
-			"WHERE Persons.FirstName=?;";
-		Connection connection = null;
-		PreparedStatement selectStmt = null;
-		ResultSet results = null;
-		try {
-			connection = connectionManager.getConnection();
-			selectStmt = connection.prepareStatement(selectAdministrators);
-			selectStmt.setString(1, firstName);
-			results = selectStmt.executeQuery();
-			while(results.next()) {
-				String userName = results.getString("UserName");
-				String resultFirstName = results.getString("FirstName");
-				String lastName = results.getString("LastName");
-				Date lastLogin = new Date(results.getTimestamp("LastLogin").getTime());
-				Administrators administrator = new Administrators(userName, resultFirstName, lastName, lastLogin);
-				administrators.add(administrator);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw e;
-		} finally {
-			if(connection != null) {
-				connection.close();
-			}
-			if(selectStmt != null) {
-				selectStmt.close();
-			}
-			if(results != null) {
-				results.close();
-			}
-		}
-		return administrators;
-	}
+  public Administrators updateLastName(Administrators administrators, String newLastName)
+      throws SQLException {
+    super.updateLastName(administrators, newLastName);
+    return administrators;
+  }
+
+  public Administrators delete(Administrators administrator) throws SQLException {
+    String deleteAdministrator = "DELETE FROM Administrators WHERE UserId=?;";
+    Connection connection = null;
+    PreparedStatement deleteStmt = null;
+    try {
+      connection = connectionManager.getConnection();
+      deleteStmt = connection.prepareStatement(deleteAdministrator);
+      deleteStmt.setInt(1, administrator.getUserId());
+      int affectedRows = deleteStmt.executeUpdate();
+      if (affectedRows == 0) {
+        throw new SQLException(
+            "No records available to delete for UserId=" + administrator.getUserId());
+      }
+
+      // Then also delete from the superclass.
+      // Notes:
+      // 1. Due to the fk constraint (ON DELETE CASCADE), we could simply call
+      //    super.delete() without even needing to delete from Administrators first.
+      // 2. BlogPosts has a fk constraint on Users with the reference option
+      //    ON DELETE SET NULL. If the BlogPosts fk reference option was instead
+      //    ON DELETE RESTRICT, then the caller would need to delete the referencing
+      //    BlogPosts before this User can be deleted.
+      //    Example to delete the referencing BlogPosts:
+      //    List<BlogPosts> posts = BlogPostsDao.getBlogPostsForUser(User.getUserId());
+      //    for(BlogPosts p : posts) BlogPostsDao.delete(p);
+      super.delete(administrator);
+
+      return null;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      throw e;
+    } finally {
+      if (connection != null) {
+        connection.close();
+      }
+      if (deleteStmt != null) {
+        deleteStmt.close();
+      }
+    }
+  }
+
+  public List<Administrators> getAdministratorsFromFirstName(String firstName) throws SQLException {
+    List<Administrators> administratorsList = new ArrayList<>();
+    String selectAdministrators =
+        "SELECT Administrators.UserId AS UserId, FirstName, LastName, LastLogin "
+            + "FROM Administrators INNER JOIN Persons "
+            + "  ON Administrators.UserId = Persons.UserId " + "WHERE Persons.FirstName=?;";
+    Connection connection = null;
+    PreparedStatement selectStmt = null;
+    ResultSet results = null;
+    try {
+      connection = connectionManager.getConnection();
+      selectStmt = connection.prepareStatement(selectAdministrators);
+      selectStmt.setString(1, firstName);
+      results = selectStmt.executeQuery();
+      while (results.next()) {
+        int UserId = results.getInt("UserId");
+        String resultFirstName = results.getString("FirstName");
+        String lastName = results.getString("LastName");
+        Date LastLogin = new Date(results.getTimestamp("LastLogin").getTime());
+        Administrators administrators = new Administrators(UserId, resultFirstName, lastName,
+            LastLogin);
+        administratorsList.add(administrators);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+      throw e;
+    } finally {
+      if (connection != null) {
+        connection.close();
+      }
+      if (selectStmt != null) {
+        selectStmt.close();
+      }
+      if (results != null) {
+        results.close();
+      }
+    }
+    return administratorsList;
+  }
+
+  public Administrators getAdministratorsByUserId(int UserId) throws SQLException {
+    String selectAdministrator =
+        "SELECT Administrators.UserId AS UserId, FirstName, LastName, LastLogin "
+            + "FROM Administrators INNER JOIN Persons "
+            + "  ON Administrators.UserId = Persons.UserId " + "WHERE Administrators.UserId=?;";
+    Connection connection = null;
+    PreparedStatement selectStmt = null;
+    ResultSet results = null;
+    try {
+      connection = connectionManager.getConnection();
+      selectStmt = connection.prepareStatement(selectAdministrator);
+      selectStmt.setInt(1, UserId);
+      results = selectStmt.executeQuery();
+      if (results.next()) {
+        int resultUserId = results.getInt("UserId");
+        String firstName = results.getString("FirstName");
+        String lastName = results.getString("LastName");
+        Date LastLogin = new Date(results.getTimestamp("LastLogin").getTime());
+        Administrators administrators = new Administrators(resultUserId, firstName, lastName,
+            LastLogin);
+        return administrators;
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+      throw e;
+    } finally {
+      if (connection != null) {
+        connection.close();
+      }
+      if (selectStmt != null) {
+        selectStmt.close();
+      }
+      if (results != null) {
+        results.close();
+      }
+    }
+    return null;
+  }
+
+
 }
