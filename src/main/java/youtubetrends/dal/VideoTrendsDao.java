@@ -1,13 +1,13 @@
 package youtubetrends.dal;
 
-import blog.model.VideoTrends;
-import blog.model.Videos;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import youtubetrends.model.VideoTrends;
+import youtubetrends.model.Videos;
 
 public class VideoTrendsDao {
 

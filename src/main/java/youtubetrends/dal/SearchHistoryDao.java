@@ -1,7 +1,6 @@
 package youtubetrends.dal;
 
-import blog.model.SearchHistory;
-import blog.model.Users;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,6 +10,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import youtubetrends.model.SearchHistory;
+import youtubetrends.model.Users;
 
 public class SearchHistoryDao {
 
@@ -31,7 +32,7 @@ public class SearchHistoryDao {
   public SearchHistory create(SearchHistory searchHistory) throws SQLException {
     String insertSearchHistory =
         "INSERT INTO SearchHistory(SearchTime, SearchKeyWords, Counter, UserId)\r\n"
-            + "	VALUES(?,?,?,?,?);";
+            + "	VALUES(?,?,?,?);";
     Connection connection = null;
     PreparedStatement insertStmt = null;
     ResultSet resultKey = null;

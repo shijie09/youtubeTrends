@@ -1,7 +1,6 @@
 package youtubetrends.dal;
 
-import blog.model.Administrators;
-import blog.model.Persons;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +9,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import youtubetrends.model.Administrators;
+import youtubetrends.model.Persons;
 
 
 public class AdministratorsDao extends PersonsDao {

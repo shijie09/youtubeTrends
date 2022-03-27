@@ -1,8 +1,6 @@
 package youtubetrends.dal;
 
-import blog.model.Likes;
-import blog.model.Users;
-import blog.model.Videos;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,6 +10,9 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import youtubetrends.model.Likes;
+import youtubetrends.model.Users;
+import youtubetrends.model.Videos;
 
 public class LikesDao {
 
@@ -43,6 +44,7 @@ public class LikesDao {
           Statement.RETURN_GENERATED_KEYS);
       insertStmt.setInt(1, like.getVideo().getVideoId());
       insertStmt.setInt(2, like.getUser().getUserId());
+      insertStmt.setTimestamp(3, new Timestamp(like.getCreated().getTime()));
       insertStmt.executeUpdate();
 
       resultKey = insertStmt.getGeneratedKeys();
@@ -76,7 +78,7 @@ public class LikesDao {
    */
   public Likes getLikeById(int likesId) throws SQLException {
     String selectLike =
-        "SELECT LikesId,VideoId,UserId,Creadted\r\n"
+        "SELECT LikesId,VideoId,UserId,Created\r\n"
             + "FROM Likes\r\n"
             + "WHERE LikesId=?;";
     Connection connection = null;

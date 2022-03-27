@@ -1,7 +1,6 @@
 package youtubetrends.dal;
 
-import blog.model.Comments;
-import blog.model.Users;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.Date;
+import youtubetrends.model.Comments;
+import youtubetrends.model.Users;
 
 
 public class CommentsDao {

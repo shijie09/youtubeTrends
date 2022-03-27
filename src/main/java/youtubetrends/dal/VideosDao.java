@@ -1,9 +1,6 @@
 package youtubetrends.dal;
 
-import blog.model.Categories;
-import blog.model.Countries;
-import blog.model.Users;
-import blog.model.Videos;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,6 +9,10 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import youtubetrends.model.Categories;
+import youtubetrends.model.Countries;
+import youtubetrends.model.Users;
+import youtubetrends.model.Videos;
 
 
 public class VideosDao {

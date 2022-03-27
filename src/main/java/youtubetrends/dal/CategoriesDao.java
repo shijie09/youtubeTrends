@@ -2,12 +2,13 @@
 
 package youtubetrends.dal;
 
-import blog.model.Categories;
-import blog.model.Users;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import youtubetrends.model.Categories;
+import youtubetrends.model.Users;
 
 
 /**
