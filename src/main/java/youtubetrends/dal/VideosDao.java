@@ -8,9 +8,7 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import youtubetrends.model.BlogPosts;
-import youtubetrends.model.BlogUsers;
-import youtubetrends.model.Reshares;
+import youtubetrends.model.Users;
 import youtubetrends.model.Videos;
 
 public class VideosDao {
@@ -157,6 +155,60 @@ public class VideosDao {
     return null;
   }
 
+  public List<Videos> getVideosByTitle(String title) throws SQLException {
+    List<Videos> persons = new ArrayList<>();
+    String selectPersons =
+        "select VideoId, TrendingDate, Title, PublishTime, Tags, Views, CommentCount, ThumbnailLink, Dislikes, CommentsDisabled, RatingsDisabled, VideoErrorOrRemoved, Description, CategoryId, CountryId, UserId from videos where title = ?;";
+    Connection connection = null;
+    PreparedStatement selectStmt = null;
+    ResultSet results = null;
+    CountriesDao countriesDao = CountriesDao.getInstance();
+    CategoriesDao categoriesDao = CategoriesDao.getInstance();
+    UsersDao usersDao = UsersDao.getInstance();
+    try {
+      connection = connectionManager.getConnection();
+      selectStmt = connection.prepareStatement(selectPersons);
+      selectStmt.setString(1, title);
+      results = selectStmt.executeQuery();
+      while (results.next()) {
+        int resultReshareId = results.getInt("VideoId");
+        String trendingDate = results.getString("TrendingDate");
+        String title2 = results.getString("Title");
+        Timestamp publishTime = results.getTimestamp("PublishTime");
+        String tags = results.getString("Tags");
+        long views = results.getLong("Views");
+        long commentCount = results.getLong("CommentCount");
+        String thumbnailLink = results.getString("ThumbnailLink");
+        long dislikes = results.getInt("Dislikes");
+        boolean commentsDisabled = results.getBoolean("CommentsDisabled");
+        boolean ratingsDisabled = results.getBoolean("RatingsDisabled");
+        boolean videoErrorOrRemoved = results.getBoolean("VideoErrorOrRemoved");
+        String description = results.getString("Description");
+        Categories categories = categoriesDao.getCategoriesById(results.getInt("CategoryId"));
+        Countries countries = countriesDao.getCountriesById(results.getInt("CountryId"));
+        Users user = usersDao.getUsersById(results.getInt("UserId"));
+        Videos reshare = new Videos(title2, trendingDate, publishTime, tags, views, commentCount,
+            thumbnailLink, dislikes, commentsDisabled, ratingsDisabled, videoErrorOrRemoved,
+            description, categoryId, userId, countryId);
+        persons.add(reshare);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+      throw e;
+    } finally {
+      if (connection != null) {
+        connection.close();
+      }
+      if (selectStmt != null) {
+        selectStmt.close();
+      }
+      if (results != null) {
+        results.close();
+      }
+    }
+    return persons;
+  }
+
   public Videos updateTitle(Videos videos, String title)
       throws SQLException {
     String updateCreditCard = "UPDATE videos SET Title = ? WHERE VideoId = ?;";
@@ -165,7 +217,7 @@ public class VideosDao {
     try {
       connection = connectionManager.getConnection();
       updateStmt = connection.prepareStatement(updateCreditCard);
-      updateStmt.setString(1,title);
+      updateStmt.setString(1, title);
       updateStmt.setInt(2, videos.getVideoId());
       updateStmt.executeUpdate();
       videos.setTitle(title);
