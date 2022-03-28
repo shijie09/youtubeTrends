@@ -11,6 +11,8 @@ import javax.servlet.annotation.*;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import youtubetrends.dal.VideosDao;
+import youtubetrends.model.Videos;
 
 
 /**
@@ -26,14 +28,14 @@ import javax.servlet.http.HttpServletResponse;
  * Notice that this is similar to Runner.java in our JDBC example. 3. Run the Tomcat server at
  * localhost. 4. Point your browser to http://localhost:8080/BlogApplication/findusers.
  */
-@WebServlet("/findusers")
-public class FindUsers extends HttpServlet {
+@WebServlet("/findvideos")
+public class FindVideos extends HttpServlet {
 
-  protected BlogUsersDao blogUsersDao;
+  protected VideosDao videosDao;
 
   @Override
   public void init() throws ServletException {
-    blogUsersDao = BlogUsersDao.getInstance();
+    videosDao = VideosDao.getInstance();
   }
 
   @Override
@@ -43,29 +45,29 @@ public class FindUsers extends HttpServlet {
     Map<String, String> messages = new HashMap<String, String>();
     req.setAttribute("messages", messages);
 
-    List<BlogUsers> blogUsers = new ArrayList<BlogUsers>();
+    List<Videos> videos = new ArrayList<>();
 
     // Retrieve and validate name.
     // firstname is retrieved from the URL query string.
-    String firstName = req.getParameter("firstname");
-    if (firstName == null || firstName.trim().isEmpty()) {
+    String title = req.getParameter("title");
+    if (title == null || title.trim().isEmpty()) {
       messages.put("success", "Please enter a valid name.");
     } else {
       // Retrieve BlogUsers, and store as a message.
       try {
-        blogUsers = blogUsersDao.getBlogUsersFromFirstName(firstName);
+        videos = videosDao.getVideosByTitle(title);
       } catch (SQLException e) {
         e.printStackTrace();
         throw new IOException(e);
       }
-      messages.put("success", "Displaying results for " + firstName);
+      messages.put("success", "Displaying results for " + title);
       // Save the previous search term, so it can be used as the default
       // in the input box when rendering FindUsers.jsp.
-      messages.put("previousFirstName", firstName);
+      messages.put("previousName", title);
     }
-    req.setAttribute("blogUsers", blogUsers);
+    req.setAttribute("videos", videos);
 
-    req.getRequestDispatcher("/FindUsers.jsp").forward(req, resp);
+    req.getRequestDispatcher("/FindVideo.jsp").forward(req, resp);
   }
 
   @Override
@@ -75,26 +77,26 @@ public class FindUsers extends HttpServlet {
     Map<String, String> messages = new HashMap<String, String>();
     req.setAttribute("messages", messages);
 
-    List<BlogUsers> blogUsers = new ArrayList<BlogUsers>();
+    List<Videos> videos = new ArrayList<>();
 
     // Retrieve and validate name.
     // firstname is retrieved from the form POST submission. By default, it
     // is populated by the URL query string (in FindUsers.jsp).
-    String firstName = req.getParameter("firstname");
-    if (firstName == null || firstName.trim().isEmpty()) {
+    String title = req.getParameter("title");
+    if (title == null || title.trim().isEmpty()) {
       messages.put("success", "Please enter a valid name.");
     } else {
       // Retrieve BlogUsers, and store as a message.
       try {
-        blogUsers = blogUsersDao.getBlogUsersFromFirstName(firstName);
+        videos = videosDao.getVideosByTitle(title);
       } catch (SQLException e) {
         e.printStackTrace();
         throw new IOException(e);
       }
-      messages.put("success", "Displaying results for " + firstName);
+      messages.put("success", "Displaying results for " + title);
     }
-    req.setAttribute("blogUsers", blogUsers);
+    req.setAttribute("videos", videos);
 
-    req.getRequestDispatcher("/FindUsers.jsp").forward(req, resp);
+    req.getRequestDispatcher("/FindVideo.jsp").forward(req, resp);
   }
 }

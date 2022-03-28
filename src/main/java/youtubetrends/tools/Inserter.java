@@ -147,7 +147,7 @@ public class Inserter {
     System.out.format("Updating administrator1: 1:%s 2:%s \n", administrators.getUserId(),
         administrators.getLastName());
 
-    Videos videos2 = videosDao.updateTitle(videos1, "new title");
+    Videos videos2 = videosDao.updateTitle(videos, "new title");
     System.out.format(
         "Reading videos: VideoId:%d Title:%s TrendingDate:%s PublishTime: %s Tags:%s Views: %d commentCount: %d thumbnailLink: %s dislikes: %d commentsDisabled:%b ratingsDisabled:%b videoErrorOrRemoved:%b description: %s category: %s Users:%s countryId: %s  \n",
         videos2.getVideoId(), videos2.getTitle(), videos2.getTrendingDate(),
@@ -170,18 +170,18 @@ public class Inserter {
     System.out.format("Looping likes1: ID:%s Created:%s Title:%s FirstName:%s \n",
         likes1.getLikesId(), likes1.getCreated(), likes1.getVideo().getTitle(),
         likes1.getUser().getFirstName());
-    //exercise delete function
-    usersDao.delete(user1);
-
-    personsDao.delete(person1);
-
-    commentsDao.delete(c1);
-    videosDao.delete(videos);
-    countriesDao.delete(countries);
-    categoriesDao.delete(categories);
-    likesDao.delete(likes);
-    videoTrendsDao.delete(videoTrends);
-    searchHistoryDao.delete(searchHistory);
+    //exercise delete function todo remove delete
+//    usersDao.delete(user1);
+//
+//    personsDao.delete(person1);
+//
+//    commentsDao.delete(c1);
+//    videosDao.delete(videos);
+//    countriesDao.delete(countries);
+//    categoriesDao.delete(categories);
+//    likesDao.delete(likes);
+//    videoTrendsDao.delete(videoTrends);
+//    searchHistoryDao.delete(searchHistory);
 
   }
 }
