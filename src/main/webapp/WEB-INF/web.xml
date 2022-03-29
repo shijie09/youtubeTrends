@@ -5,7 +5,7 @@
   xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
   <display-name>BlogApplication</display-name>
   <welcome-file-list>
-    <welcome-file>FindUsers.jsp</welcome-file>
+    <welcome-file>FindVideo.jsp</welcome-file>
   </welcome-file-list>
   <!--
   <servlet>
