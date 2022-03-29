@@ -46,8 +46,8 @@
                        <td><c:out value="${videos.getViews()}" /></td>
                     <td><c:out value="${videos.getDislikes()}" /></td>
                     <td><c:out value="${videos.getThumbnailLink()}" /></td>
-                    <td><a href="userdelete?username=<c:out value="${videos.getVideoId()}"/>">Delete</a></td>
-                    <td><a href="userupdate?username=<c:out value="${videos.getVideoId()}"/>">Update</a></td>
+                    <td><a href="videodelete?title=<c:out value="${videos.getTitle()}"/>">Delete</a></td>
+                    <td><a href="videoupdate?title=<c:out value="${videos.getTitle()}"/>">Update</a></td>
                 </tr>
             </c:forEach>
        </table>

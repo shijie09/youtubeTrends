@@ -107,6 +107,29 @@ public class VideosDao {
     }
   }
 
+  public Videos deleteTitle(String title) throws SQLException {
+    String deleteReshare = "DELETE FROM Videos WHERE title=?;";
+    Connection connection = null;
+    PreparedStatement deleteStmt = null;
+    try {
+      connection = connectionManager.getConnection();
+      deleteStmt = connection.prepareStatement(deleteReshare);
+      deleteStmt.setString(1, title);
+      deleteStmt.executeUpdate();
+      return null;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      throw e;
+    } finally {
+      if (connection != null) {
+        connection.close();
+      }
+      if (deleteStmt != null) {
+        deleteStmt.close();
+      }
+    }
+  }
+
   public Videos getVideosById(int videoId) throws SQLException {
     String selectReshare = "select VideoId, TrendingDate, Title, PublishTime, Tags, Views, CommentCount, ThumbnailLink, Dislikes, CommentsDisabled, RatingsDisabled, VideoErrorOrRemoved, Description, CategoryId, CountryId, UserId from videos where videoId = ?;";
     Connection connection = null;
@@ -161,8 +184,7 @@ public class VideosDao {
 
   public List<Videos> getVideosByTitle(String title) throws SQLException {
     List<Videos> persons = new ArrayList<>();
-    String selectPersons =
-        "select VideoId, TrendingDate, Title, PublishTime, Tags, Views, CommentCount, ThumbnailLink, Dislikes, CommentsDisabled, RatingsDisabled, VideoErrorOrRemoved, Description, CategoryId, CountryId, UserId from videos where title = ?;";
+    String selectPersons = "select VideoId, TrendingDate, Title, PublishTime, Tags, Views, CommentCount, ThumbnailLink, Dislikes, CommentsDisabled, RatingsDisabled, VideoErrorOrRemoved, Description, CategoryId, CountryId, UserId from videos where title = ?;";
     Connection connection = null;
     PreparedStatement selectStmt = null;
     ResultSet results = null;
@@ -191,7 +213,7 @@ public class VideosDao {
         Categories categories = categoriesDao.getCategoryByCategoryId(results.getInt("CategoryId"));
         Countries countries = countriesDao.getCountryByCountryId(results.getInt("CountryId"));
         Users user = usersDao.getUserByUserId(results.getInt("UserId"));
-        Videos reshare = new Videos(title2, trendingDate, publishTime, tags, views, commentCount,
+        Videos reshare = new Videos(resultReshareId, title2, trendingDate, publishTime, tags, views, commentCount,
             thumbnailLink, dislikes, commentsDisabled, ratingsDisabled, videoErrorOrRemoved,
             description, categories, user, countries);
         persons.add(reshare);
@@ -213,8 +235,7 @@ public class VideosDao {
     return persons;
   }
 
-  public Videos updateTitle(Videos videos, String title)
-      throws SQLException {
+  public Videos updateTitle(Videos videos, String title) throws SQLException {
     String updateCreditCard = "UPDATE videos SET Title = ? WHERE VideoId = ?;";
     Connection connection = null;
     PreparedStatement updateStmt = null;
