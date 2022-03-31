@@ -132,5 +132,30 @@ public class CountriesDao {
     }
     return null;
   }
+	public Countries updateContent(Countries countries, String countryName) throws SQLException {
+		String updateComment = "UPDATE Countries SET CountryName=?  WHERE CountryId=?;";
+		Connection connection = null;
+		PreparedStatement updateStmt = null;
+		try {
+			connection = connectionManager.getConnection();
+			updateStmt = connection.prepareStatement(updateComment);
+			updateStmt.setString(1, countryName);
+			updateStmt.setInt(2, countries.getCountryId());
+			updateStmt.executeUpdate();
 
+			// Update the Countries param before returning to the caller.
+			countries.setCountryName(countryName);
+			return countries;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			if(connection != null) {
+				connection.close();
+			}
+			if(updateStmt != null) {
+				updateStmt.close();
+			}
+		}
+	}
 }

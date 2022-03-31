@@ -69,26 +69,28 @@ public class VideoCreate extends HttpServlet {
     boolean videoErrorOrRemoved = Boolean.parseBoolean(req.getParameter("VideoErrorOrRemoved"));
     String description = req.getParameter("Description");
     Countries countries = null;
-	try {
-		countries = countriesDao.getCountryByCountryId(Integer.parseInt(req.getParameter("CountryId")));
-	} catch (NumberFormatException | SQLException e3) {
-		// TODO Auto-generated catch block
-		e3.printStackTrace();
-	}
+    try {
+      countries = countriesDao.getCountryByCountryId(
+          Integer.parseInt(req.getParameter("CountryId")));
+    } catch (NumberFormatException | SQLException e3) {
+      // TODO Auto-generated catch block
+      e3.printStackTrace();
+    }
     Categories categories = null;
-	try {
-		categories = categoriesDao.getCategoryByCategoryId(Integer.parseInt(req.getParameter("CategoryId")));
-	} catch (NumberFormatException | SQLException e2) {
-		// TODO Auto-generated catch block
-		e2.printStackTrace();
-	}
+    try {
+      categories = categoriesDao.getCategoryByCategoryId(
+          Integer.parseInt(req.getParameter("CategoryId")));
+    } catch (NumberFormatException | SQLException e2) {
+      // TODO Auto-generated catch block
+      e2.printStackTrace();
+    }
     Users user = null;
-	try {
-		user = usersDao.getUserByUserId(Integer.parseInt(req.getParameter("UserId")));
-	} catch (NumberFormatException | SQLException e1) {
-		// TODO Auto-generated catch block
-		e1.printStackTrace();
-	}
+    try {
+      user = usersDao.getUserByUserId(Integer.parseInt(req.getParameter("UserId")));
+    } catch (NumberFormatException | SQLException e1) {
+      // TODO Auto-generated catch block
+      e1.printStackTrace();
+    }
 
     // dob must be in the format yyyy-mm-dd.
     Date trendingDate = new Date();
@@ -102,7 +104,8 @@ public class VideoCreate extends HttpServlet {
     }
     try {
       // Exercise: parse the input for StatusLevel.
-      Videos reshare = new Videos(title, stringTrendingDate, new Timestamp(publishTime.getTime()), tags,
+      Videos reshare = new Videos(title, stringTrendingDate, new Timestamp(publishTime.getTime()),
+          tags,
           views, commentCount, thumbnailLink, dislikes, commentsDisabled, ratingsDisabled,
           videoErrorOrRemoved, description, categories, user, countries);
       reshare = videosDao.create(reshare);

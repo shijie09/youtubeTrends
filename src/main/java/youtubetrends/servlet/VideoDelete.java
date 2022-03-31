@@ -44,22 +44,20 @@ public class VideoDelete extends HttpServlet {
     // Retrieve and validate name.
     String title = req.getParameter("title");
 
-
-      try {
-        Videos videos = videosDao.deleteTitle(title);
-        // Update the message.
-        if (videos == null) {
-          messages.put("title", "Successfully deleted " + title);
-          messages.put("disableSubmit", "true");
-        } else {
-          messages.put("title", "Failed to delete " + title);
-          messages.put("disableSubmit", "false");
-        }
-      } catch (SQLException e) {
-        e.printStackTrace();
-        throw new IOException(e);
+    try {
+      Videos videos = videosDao.deleteTitle(title);
+      // Update the message.
+      if (videos == null) {
+        messages.put("title", "Successfully deleted " + title);
+        messages.put("disableSubmit", "true");
+      } else {
+        messages.put("title", "Failed to delete " + title);
+        messages.put("disableSubmit", "false");
       }
-
+    } catch (SQLException e) {
+      e.printStackTrace();
+      throw new IOException(e);
+    }
 
     req.getRequestDispatcher("/VideoDelete.jsp").forward(req, resp);
   }

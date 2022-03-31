@@ -135,5 +135,37 @@ public class CategoriesDao {
     }
     return null;
   }
+	/**
+	 * Update the content of the Categories instance.
+	 * This runs a UPDATE statement.
+	 */
+	public Categories updateContent(Categories categories, String title, boolean assignable) throws SQLException {
+		String updateComment = "UPDATE Categories SET Title=?,Assignable=? WHERE CategoryId=?;";
+		Connection connection = null;
+		PreparedStatement updateStmt = null;
+		try {
+			connection = connectionManager.getConnection();
+			updateStmt = connection.prepareStatement(updateComment);
+			updateStmt.setString(1, title);
+			updateStmt.setBoolean(2, assignable);
+			updateStmt.setInt(3, categories.getCategoryId());
+			updateStmt.executeUpdate();
+
+			// Update the categories param before returning to the caller.
+			categories.setTitle(title);
+			categories.setAssignable(assignable);
+			return categories;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			if(connection != null) {
+				connection.close();
+			}
+			if(updateStmt != null) {
+				updateStmt.close();
+			}
+		}
+	}
 
 }

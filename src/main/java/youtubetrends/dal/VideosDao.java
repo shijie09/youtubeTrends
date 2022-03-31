@@ -213,7 +213,8 @@ public class VideosDao {
         Categories categories = categoriesDao.getCategoryByCategoryId(results.getInt("CategoryId"));
         Countries countries = countriesDao.getCountryByCountryId(results.getInt("CountryId"));
         Users user = usersDao.getUserByUserId(results.getInt("UserId"));
-        Videos reshare = new Videos(resultReshareId, title2, trendingDate, publishTime, tags, views, commentCount,
+        Videos reshare = new Videos(resultReshareId, title2, trendingDate, publishTime, tags, views,
+            commentCount,
             thumbnailLink, dislikes, commentsDisabled, ratingsDisabled, videoErrorOrRemoved,
             description, categories, user, countries);
         persons.add(reshare);

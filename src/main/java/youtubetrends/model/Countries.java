@@ -16,7 +16,12 @@ public class Countries {
     this.CountryName = CountryName;
   }
 
-  public Integer getCountryId() {
+  public Countries(String countryName) {
+	super();
+	CountryName = countryName;
+}
+
+public Integer getCountryId() {
     return CountryId;
   }
 

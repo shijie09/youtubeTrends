@@ -12,7 +12,13 @@ public class Categories {
     this.categoryId = categoryId;
   }
 
-  public Categories(Integer categoryId, String title, Boolean assignable) {
+  public Categories(String title, Boolean assignable) {
+	super();
+	this.title = title;
+	this.assignable = assignable;
+}
+
+public Categories(Integer categoryId, String title, Boolean assignable) {
     this.categoryId = categoryId;
     this.title = title;
     this.assignable = assignable;
