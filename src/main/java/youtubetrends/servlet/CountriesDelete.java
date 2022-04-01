@@ -57,10 +57,10 @@ public class CountriesDelete extends HttpServlet {
 	        	countries = countriesDao.delete(countries);
 	        	// Update the message.
 		        if (countries == null) {
-		            messages.put("title", "Successfully deleted " + countries.getCountryName());
+		            messages.put("title", "Successfully deleted " + countriesId);
 		            messages.put("disableSubmit", "true");
 		        } else {
-		        	messages.put("title", "Failed to delete " + countries.getCountryName());
+		        	messages.put("title", "Failed to delete " + countriesId);
 		        	messages.put("disableSubmit", "false");
 		        }
 	        } catch (SQLException e) {
