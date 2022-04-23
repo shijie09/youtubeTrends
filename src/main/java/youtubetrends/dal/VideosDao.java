@@ -235,7 +235,53 @@ public class VideosDao {
     }
     return persons;
   }
-
+  public List<Videos> gethottestVideosByTime(String time) throws SQLException {
+    List<Videos> persons = new ArrayList<>();
+    String selectPersons = "select VideoId, TrendingDate, Title, PublishTime, Tags, Views, CommentCount, ThumbnailLink, Dislikes, CommentsDisabled, RatingsDisabled, VideoErrorOrRemoved, Description from videos where videos.PublishTime = ? order by videos.Views desc limit 10;";
+    Connection connection = null;
+    PreparedStatement selectStmt = null;
+    ResultSet results = null;
+    try {
+      connection = connectionManager.getConnection();
+      selectStmt = connection.prepareStatement(selectPersons);
+      selectStmt.setString(1, time);
+      results = selectStmt.executeQuery();
+      while (results.next()) {
+        int resultReshareId = results.getInt("VideoId");
+        String trendingDate = results.getString("TrendingDate");
+        String title2 = results.getString("Title");
+        Timestamp publishTime = results.getTimestamp("PublishTime");
+        String tags = results.getString("Tags");
+        long views = results.getLong("Views");
+        long commentCount = results.getLong("CommentCount");
+        String thumbnailLink = results.getString("ThumbnailLink");
+        long dislikes = results.getInt("Dislikes");
+        boolean commentsDisabled = results.getBoolean("CommentsDisabled");
+        boolean ratingsDisabled = results.getBoolean("RatingsDisabled");
+        boolean videoErrorOrRemoved = results.getBoolean("VideoErrorOrRemoved");
+        String description = results.getString("Description");
+        Videos reshare = new Videos(resultReshareId, title2, trendingDate, publishTime, tags, views,
+            commentCount,
+            thumbnailLink, dislikes, commentsDisabled, ratingsDisabled, videoErrorOrRemoved,
+            description);
+        persons.add(reshare);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+      throw e;
+    } finally {
+      if (connection != null) {
+        connection.close();
+      }
+      if (selectStmt != null) {
+        selectStmt.close();
+      }
+      if (results != null) {
+        results.close();
+      }
+    }
+    return persons;
+  }
   public Videos updateTitle(Videos videos, String title) throws SQLException {
     String updateCreditCard = "UPDATE videos SET Title = ? WHERE VideoId = ?;";
     Connection connection = null;

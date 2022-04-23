@@ -46,6 +46,25 @@ public class Videos {
   public Videos(int videoId, String title, String trendingDate, Timestamp publishTime,
       String tags, long views, long commentCount, String thumbnailLink, long dislikes,
       boolean commentsDisabled, boolean ratingsDisabled, boolean videoErrorOrRemoved,
+      String description) {
+    this.videoId = videoId;
+    this.title = title;
+    this.trendingDate = trendingDate;
+    this.publishTime = publishTime;
+    this.tags = tags;
+    this.views = views;
+    this.commentCount = commentCount;
+    this.thumbnailLink = thumbnailLink;
+    this.dislikes = dislikes;
+    this.commentsDisabled = commentsDisabled;
+    this.ratingsDisabled = ratingsDisabled;
+    this.videoErrorOrRemoved = videoErrorOrRemoved;
+    this.description = description;
+  }
+
+  public Videos(int videoId, String title, String trendingDate, Timestamp publishTime,
+      String tags, long views, long commentCount, String thumbnailLink, long dislikes,
+      boolean commentsDisabled, boolean ratingsDisabled, boolean videoErrorOrRemoved,
       String description, Categories categoryId, Users userId, Countries countryId) {
     this.videoId = videoId;
     this.title = title;
