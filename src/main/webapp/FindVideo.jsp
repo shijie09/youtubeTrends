@@ -28,7 +28,12 @@
 		</p>
 	</form>
 	<br/>
-	<div id="videoCreate"><a href="videocreate">Create Video</a></div>
+	<!-- <button type="button" class="btn btn-primary"><a href="videocreate">Create Video</a></button> -->
+	<div id="videoCreate">
+		<a href="videocreate" class="btn btn-success">Create Video</a>
+		<br/>
+		<a href="findhottest" class="btn btn-info">Hottest Video </a>
+	</div>
 	<br/>
 		<div class="alert alert-info" role="alert">
 	<h2><span id="successMessage"><b>${messages.success}</b></span></h2>
@@ -41,8 +46,8 @@
                 <th>PublishTime</th>
                 <th>Tags</th>
                 <th>Views</th>
-                <th>dislikes</th>
-                <th>thumbnailLink</th>
+                <th>Dislikes</th>
+                <th>Likes</th>
                 <th>Delete Video</th>
                 <th>Update Video</th>
             </tr></thead>
@@ -53,7 +58,8 @@
                     <td><c:out value="${videos.getTags()}" /></td>
                        <td><c:out value="${videos.getViews()}" /></td>
                     <td><c:out value="${videos.getDislikes()}" /></td>
-                    <td><c:out value="${videos.getThumbnailLink()}" /></td>
+                    <%-- <td><c:out value="${videos.getThumbnailLink()}" /></td> --%>
+                    <td><a href="videolikes?videoId=<c:out value="${videos.getVideoId()}"/>">Likes</a></td>
                     <td><a href="videodelete?title=<c:out value="${videos.getTitle()}"/>">Delete</a></td>
                     <td><a href="videoupdate?title=<c:out value="${videos.getTitle()}"/>">Update</a></td>
                 </tr></tbody>

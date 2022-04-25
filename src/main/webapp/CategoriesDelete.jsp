@@ -16,8 +16,8 @@
 		<p>
 			<div <c:if test="${messages.disableSubmit}">style="display:none"</c:if>>
 				<label for="categoryId">categoryId</label>
-				<input id="categoryId" name="categoryId" value="${fn:escapeXml(param.categoryId)}">
-			</div>
+				<%-- <input id="categoryId" name="categoryId" value="${fn:escapeXml(param.categoryId)}">
+ --%>			</div>
 		</p>
 		<p>
 			<span id="submitButton" <c:if test="${messages.disableSubmit}">style="display:none"</c:if>>
