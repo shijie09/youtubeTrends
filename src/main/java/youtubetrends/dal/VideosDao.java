@@ -313,7 +313,7 @@ public class VideosDao {
 	    		+ "Views, CommentCount, ThumbnailLink, Dislikes, CommentsDisabled, "
 	    		+ "RatingsDisabled, VideoErrorOrRemoved, Description "
 	    		+ "FROM Videos \n"
-	    		+ "ORDER BY Views\n"
+	    		+ "ORDER BY Views DES\n"
 	    		+ "LIMIT ?;";
 	    Connection connection = null;
 	    PreparedStatement selectStmt = null;
