@@ -55,9 +55,9 @@ public class VideoLikes extends HttpServlet {
     // Retrieve and validate name.
     // firstname is retrieved from the URL query string.
     String videoId = req.getParameter("videoId");
-//    if (title == null || title.trim().isEmpty()) {
-//      messages.put("success", "Please enter a valid name.");
-//    } else {
+    if (videoId == null || videoId.trim().isEmpty()) {
+      messages.put("success", "Please enter a valid name.");
+    } else {
       // Retrieve BlogUsers, and store as a message.
       try {
 //        videos = videosDao.getVideosByTitle(title);
@@ -70,7 +70,7 @@ public class VideoLikes extends HttpServlet {
 //      // Save the previous search term, so it can be used as the default
 //      // in the input box when rendering FindUsers.jsp.
 //      messages.put("previousName", title);
-//    }
+    }
     req.setAttribute("likeDetails", likeDetails);
 
     req.getRequestDispatcher("/VideoLikes.jsp").forward(req, resp);
