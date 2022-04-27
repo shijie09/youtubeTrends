@@ -10,62 +10,47 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <!-- Bootstrap -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<title>Find a Video</title>
+<title>Find Optimal Ads Time</title>
 </head>
 <body>
  <div class="container theme-showcase" role="main">
-	<form action="findvideos" method="post">
+	<form action="findoptimaladstime" method="post">
 	<div class="jumbotron">
-		<h1>Search for a Video by Titles</h1>
+		<h1>List the Top N Optimal Ads Time</h1>
+		<h4>(Based on the Views of the Video Table)</h4>
+		<h3>If you want to cooperate with the Video Creator, you can find the contact information below .</h3>
 	</div>
-		<p>
-			<label for="title">title</label>
-			<input id="title" name="title" value="${fn:escapeXml(param.title)}">
-		</p>
+	<p>
+			<label for="topN">You want which rank videos info? </label>
+			<input id="topN" name="topN" value="${fn:escapeXml(param.time)}">
+		</p>	
 		<p>
 			<input type="submit" class="btn btn-lg btn-primary">
 			<br/><br/>
 		</p>
 	</form>
 	<br/>
-	<!-- <button type="button" class="btn btn-primary"><a href="videocreate">Create Video</a></button> -->
-	<div id="videoCreate">
-		<a href="videocreate" class="btn btn-success">Create Video</a>
-		<br/>
-		<br/><br/>
-		<a href="findhottest" class="btn btn-info">Hottest Video </a>
-		<br/>
-		<br/><br/>
-		<a href="findoptimaladstime" class="btn btn-warning">Optimal Ads Time</a>
-	</div>
 	<br/>
 		<div class="alert alert-info" role="alert">
 	<h2><span id="successMessage"><b>${messages.success}</b></span></h2>
 	</div>
 	<br/>
-	<h1>Matching Video</h1>
+	<h1>Top N Ads Time(Including Video Info)</h1>
       <table class="table table-striped">
             <thead><tr>
-                <th>Title</th>
+            	<th>Views</th>
                 <th>PublishTime</th>
+                <th>Title</th>
                 <th>Tags</th>
-                <th>Views</th>
-                <th>Dislikes</th>
-                <th>Likes</th>
-                <th>Delete Video</th>
-                <th>Update Video</th>
+                <th>thumbnailLink</th>
             </tr></thead>
             <c:forEach items="${videos}" var="videos" >
                  <tbody><tr>
+                 	<td><c:out value="${videos.getViews()}" /></td>
+                 	<td><c:out value="${videos.getPublishTime()}" /></td>
                     <td><c:out value="${videos.getTitle()}" /></td>
-                    <td><c:out value="${videos.getPublishTime()}" /></td>
                     <td><c:out value="${videos.getTags()}" /></td>
-                       <td><c:out value="${videos.getViews()}" /></td>
-                    <td><c:out value="${videos.getDislikes()}" /></td>
-                    <%-- <td><c:out value="${videos.getThumbnailLink()}" /></td> --%>
-                    <td><a href="videolikes?videoId=<c:out value="${videos.getVideoId()}"/>">Likes</a></td>
-                    <td><a href="videodelete?title=<c:out value="${videos.getTitle()}"/>">Delete</a></td>
-                    <td><a href="videoupdate?title=<c:out value="${videos.getTitle()}"/>">Update</a></td>
+                    <td><c:out value="${videos.getThumbnailLink()}" /></td>
                 </tr></tbody>
             </c:forEach>
        </table>

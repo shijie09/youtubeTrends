@@ -14,13 +14,13 @@
 </head>
 <body>
  <div class="container theme-showcase" role="main">
-	<form action="findvideos" method="post">
+	<form action="findhottest" method="post">
 	<div class="jumbotron">
-		<h1>Search for a Video by Titles</h1>
+		<h1>Search for Top 10 Hottest Video by Time</h1>
 	</div>
 		<p>
-			<label for="title">title</label>
-			<input id="title" name="title" value="${fn:escapeXml(param.title)}">
+			<label for="time">Time</label>
+			<input id="time" name="time" value="${fn:escapeXml(param.time)}">
 		</p>
 		<p>
 			<input type="submit" class="btn btn-lg btn-primary">
@@ -28,16 +28,6 @@
 		</p>
 	</form>
 	<br/>
-	<!-- <button type="button" class="btn btn-primary"><a href="videocreate">Create Video</a></button> -->
-	<div id="videoCreate">
-		<a href="videocreate" class="btn btn-success">Create Video</a>
-		<br/>
-		<br/><br/>
-		<a href="findhottest" class="btn btn-info">Hottest Video </a>
-		<br/>
-		<br/><br/>
-		<a href="findoptimaladstime" class="btn btn-warning">Optimal Ads Time</a>
-	</div>
 	<br/>
 		<div class="alert alert-info" role="alert">
 	<h2><span id="successMessage"><b>${messages.success}</b></span></h2>
@@ -50,10 +40,8 @@
                 <th>PublishTime</th>
                 <th>Tags</th>
                 <th>Views</th>
-                <th>Dislikes</th>
-                <th>Likes</th>
-                <th>Delete Video</th>
-                <th>Update Video</th>
+                <th>dislikes</th>
+                <th>thumbnailLink</th>
             </tr></thead>
             <c:forEach items="${videos}" var="videos" >
                  <tbody><tr>
@@ -62,10 +50,7 @@
                     <td><c:out value="${videos.getTags()}" /></td>
                        <td><c:out value="${videos.getViews()}" /></td>
                     <td><c:out value="${videos.getDislikes()}" /></td>
-                    <%-- <td><c:out value="${videos.getThumbnailLink()}" /></td> --%>
-                    <td><a href="videolikes?videoId=<c:out value="${videos.getVideoId()}"/>">Likes</a></td>
-                    <td><a href="videodelete?title=<c:out value="${videos.getTitle()}"/>">Delete</a></td>
-                    <td><a href="videoupdate?title=<c:out value="${videos.getTitle()}"/>">Update</a></td>
+                    <td><c:out value="${videos.getThumbnailLink()}" /></td>
                 </tr></tbody>
             </c:forEach>
        </table>
