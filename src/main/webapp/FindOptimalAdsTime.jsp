@@ -55,7 +55,7 @@
 				<p class="lead text-muted">
 				<label for="topN"><b>Which rank videos information do you want?</b></label> 
 				</p>
-				<input type="email" class="form-control" id="topN" value="${fn:escapeXml(param.time)}">
+				<input type="search" name="topN" class="form-control" id="topN" value="${fn:escapeXml(param.time)}">
 				<input type="submit" class="btn btn-primary my-2">
 			</div>
 		</div>
