@@ -10,26 +10,44 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <!-- Bootstrap -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<title>Find a Video</title>
+<title>Find Videos</title>
 </head>
 <body>
  <div class="container theme-showcase" role="main">
-	<form action="findvideos" method="post">
-	<div class="jumbotron">
-		<h1>Search for a Video by Titles</h1>
+	<!-- <form action="findvideos" method="post"> -->
+	<div class="">
+		<h1>Explore Trends</h1>
 	</div>
-		<p>
-			<label for="title">title</label>
-			<input id="title" name="title" value="${fn:escapeXml(param.title)}">
-		</p>
-		<p>
-			<input type="submit" class="btn btn-lg btn-primary">
-			<br/><br/>
-		</p>
-	</form>
-	<br/>
+	<nav class="navbar navbar-expand-lg navbar-info fixed-top bg-light">
+		<div class="container-fluid">
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+		        <span class="navbar-toggler-icon"></span>
+		     </button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+			        <li class="nav-item">
+			        	<a href="videocreate" class="nav-link" aria-current="page"><b>Create Video</b></a>
+			          <!-- <a class="nav-link active" aria-current="page" href="#">Home</a> -->
+			        </li>
+			        <li class="nav-item">
+			        	<a href="findhottest" class="nav-link"><b>Hottest Video</b> </a>
+			        </li>
+			       	<li class="nav-item">
+			        	<a href="findoptimaladstime" class="nav-link"><b>Optimal Ads Time</b></a>
+			        </li>
+		        </ul>
+		        <form class="d-flex">
+						<!-- <label for="title">title</label> -->
+					<input id="title" name="title" placeholder="Search videos by title" class="form-control me-2" style="margin-right: 4px;" type="search" aria-label="Search" value="${fn:escapeXml(param.title)}" />
+					<button type="submit" class="btn btn-outline-success">Search</button>
+				</form>
+			</div>
+		</div>
+	</nav>
+		
+	<!-- </form> -->
 	<!-- <button type="button" class="btn btn-primary"><a href="videocreate">Create Video</a></button> -->
-	<div id="videoCreate">
+	<!-- <div id="videoCreate">
 		<a href="videocreate" class="btn btn-success">Create Video</a>
 		<br/>
 		<br/><br/>
@@ -38,11 +56,10 @@
 		<br/><br/>
 		<a href="findoptimaladstime" class="btn btn-warning">Optimal Ads Time</a>
 	</div>
-	<br/>
-		<div class="alert alert-info" role="alert">
-	<h2><span id="successMessage"><b>${messages.success}</b></span></h2>
+	<br/> -->
+	<div class="alert alert-light" role="alert">
+		<span id="successMessage">${messages.success}</span>
 	</div>
-	<br/>
 	<h1>Matching Video</h1>
       <table class="table table-striped">
             <thead><tr>

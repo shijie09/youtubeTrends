@@ -13,5 +13,8 @@
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/Users/meng/Development/5200-db/lib/mysql-connector-java-8.0.16.jar"/>
+	<classpathentry kind="lib" path="/Users/meng/Development/5200-db/lib/taglibs-standard-impl-1.2.5.jar"/>
+	<classpathentry kind="lib" path="/Users/meng/Development/5200-db/lib/taglibs-standard-spec-1.2.5.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
