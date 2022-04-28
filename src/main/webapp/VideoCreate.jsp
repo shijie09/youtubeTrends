@@ -46,67 +46,67 @@
     <form action="videocreate" method="post" style="margin-top: 7%">
 		<div class="mb-3">
 			<label for="TrendingDate" class="form-label">TrendingDate</label> 
-			<input type="email" class="form-control" placeholder="yyyy-MM-dd" id="TrendingDate">
+			<input type="text" class="form-control" placeholder="yyyy-MM-dd" id="TrendingDate">
 		</div>
 		<div class="mb-3">
 			<label for="Title" class="form-label">Title</label> 
-			<input type="email" class="form-control" id="Title">
+			<input type="text" class="form-control" id="Title">
 		</div>
 		<div class="mb-3">
 			<label for="PublishTime" class="form-label">PublishTime</label> 
-			<input type="email" class="form-control"  placeholder="yyyy-MM-dd" id="PublishTime">
+			<input type="text" class="form-control"  placeholder="yyyy-MM-dd" id="PublishTime">
 		</div>
 		<div class="mb-3">
 			<label for="Tags" class="form-label">Tags</label> 
-			<input type="email" class="form-control" id="Tags">
+			<input type="text" class="form-control" id="Tags">
 		</div>
 		<div class="mb-3">
 			<label for="Views" class="form-label">Views</label> 
-			<input type="email" class="form-control" id="Views">
+			<input class="form-control" id="Views" name="Views">
 		</div>
 		<div class="mb-3">
 			<label for="CommentCount" class="form-label">CommentCount</label> 
-			<input type="email" class="form-control" id="CommentCount">
+			<input type="text" class="form-control" id="CommentCount">
 		</div>
 		<div class="mb-3">
 			<label for="ThumbnailLink" class="form-label">ThumbnailLink</label> 
-			<input type="email" class="form-control" id="ThumbnailLink">
+			<input type="text" class="form-control" id="ThumbnailLink">
 		</div>
 		<div class="mb-3">
 			<label for="Dislikes" class="form-label">Dislikes</label> 
-			<input type="email" class="form-control" id="Dislikes">
+			<input type="text" class="form-control" id="Dislikes">
 		</div>
 		<div class="mb-3">
 			<label for="ThumbnailLink" class="form-label">ThumbnailLink</label> 
-			<input type="email" class="form-control" id="ThumbnailLink">
+			<input type="text" class="form-control" id="ThumbnailLink">
 		</div>
 		<div class="mb-3">
 			<label for="CommentsDisabled" class="form-label">CommentsDisabled</label> 
-			<input type="email" class="form-control" id="CommentsDisabled">
+			<input type="text" class="form-control" id="CommentsDisabled">
 		</div>
 		<div class="mb-3">
 			<label for="RatingsDisabled" class="form-label">RatingsDisabled</label> 
-			<input type="email" class="form-control" id="RatingsDisabled">
+			<input type="text" class="form-control" id="RatingsDisabled">
 		</div>
 		<div class="mb-3">
 			<label for="VideoErrorOrRemoved" class="form-label">VideoErrorOrRemoved</label> 
-			<input type="email" class="form-control" id="VideoErrorOrRemoved">
+			<input type="text" class="form-control" id="VideoErrorOrRemoved">
 		</div>
 		<div class="mb-3">
 			<label for="Description" class="form-label">Description</label> 
-			<input type="email" class="form-control" id="Description">
+			<input type="text" class="form-control" id="Description">
 		</div>
 		<div class="mb-3">
 			<label for="CategoryId" class="form-label">CategoryId</label> 
-			<input type="email" class="form-control" id="CategoryId">
+			<input type="text" class="form-control" id="CategoryId">
 		</div>
 		<div class="mb-3">
 			<label for="CountryId" class="form-label">CountryId</label> 
-			<input type="email" class="form-control" id="CountryId">
+			<input type="text" class="form-control" id="CountryId">
 		</div>
 		<div class="mb-3">
 			<label for="UserId" class="form-label">UserId</label> 
-			<input type="email" class="form-control" id="UserId">
+			<input type="text" class="form-control" id="UserId">
 		</div>
 		
 		<input type="submit" class="btn btn-primary">
