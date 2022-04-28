@@ -55,7 +55,7 @@
 				<p class="lead text-muted">
 				<label for="topN"><b>Which rank videos information do you want?</b></label> 
 				</p>
-				<input class="form-control" id="topN" value="${fn:escapeXml(param.time)}">
+				<input type="search" name="topN" class="form-control" id="topN" value="${fn:escapeXml(param.time)}">
 				<input type="submit" class="btn btn-primary my-2">
 			</div>
 		</div>
@@ -70,10 +70,11 @@
 			<input type="submit" class="btn btn-primary">
 			<br/><br/>
 		</p> --%> 
-	
-	<div class="alert alert-info" role="alert">
-		<span id="successMessage">${messages.success}</span>
-	</div>
+	</form>
+		<div class="alert alert-info" role="alert">
+			<span id="successMessage">${messages.success}</span>
+		</div>
+	<br/>
 	<!-- <h3>Top N Ads Time(Including Video Info)</h3> -->
       <table class="table table-striped">
             <thead><tr>
@@ -93,7 +94,6 @@
                 </tr></tbody>
             </c:forEach>
        </table>
-       </form>
      </div>
     <!-- Bootstrap -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
