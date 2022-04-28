@@ -46,7 +46,7 @@
     <form action="videocreate" method="post" style="margin-top: 7%">
 		<div class="mb-3">
 			<label for="TrendingDate" class="form-label">TrendingDate</label> 
-			<input type="email" class="form-control" placeholder="yyyy-mm-dd" id="TrendingDate">
+			<input type="email" class="form-control" placeholder="yyyy-MM-dd" id="TrendingDate">
 		</div>
 		<div class="mb-3">
 			<label for="Title" class="form-label">Title</label> 
@@ -54,7 +54,7 @@
 		</div>
 		<div class="mb-3">
 			<label for="PublishTime" class="form-label">PublishTime</label> 
-			<input type="email" class="form-control"  placeholder="yyyy-mm-dd" id="PublishTime">
+			<input type="email" class="form-control"  placeholder="yyyy-MM-dd" id="PublishTime">
 		</div>
 		<div class="mb-3">
 			<label for="Tags" class="form-label">Tags</label> 
