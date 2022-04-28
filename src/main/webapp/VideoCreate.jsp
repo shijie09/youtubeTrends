@@ -14,11 +14,105 @@
 </head>
 <body>
 <div class="container theme-showcase" role="main">
-    <div class="jumbotron">
+<!--     <div class="jumbotron">
         <h1>Create Video</h1>
-    </div>
-    <form action="videocreate" method="post">
-        <p>
+    </div> -->
+    <nav class="navbar navbar-expand-lg navbar-info fixed-top bg-light">
+		<div class="container-fluid">
+			<span class="fs-4" style="margin-right: 2%;font-size:x-large" ><b>YouTubeTrends</b></span>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				  	<li class="nav-item">
+			        	<a href="findvideos" class="nav-link" aria-current="page"><b>Find Videos</b></a>
+			          <!-- <a class="nav-link active" aria-current="page" href="#">Home</a> -->
+			        </li>
+			        <li class="nav-item">
+			        	<a href="#" class="nav-link disabled" aria-current="page"><b>Create Video</b></a>
+			          <!-- <a class="nav-link active" aria-current="page" href="#">Home</a> -->
+			        </li>
+			        <li class="nav-item">
+			        	<a href="findhottest" class="nav-link"><b>Hottest Video</b> </a>
+			        </li>
+			       	<li class="nav-item">
+			        	<a href="findoptimaladstime" class="nav-link"><b>Optimal Ads Time</b></a>
+			        </li>
+		        </ul>
+			</div>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+		        <span class="navbar-toggler-icon"></span>
+		     </button>
+		</div>
+	</nav>
+    <form action="videocreate" method="post" style="margin-top: 7%">
+		<div class="mb-3">
+			<label for="TrendingDate" class="form-label">TrendingDate</label> 
+			<input type="email" class="form-control" placeholder="yyyy-mm-dd" id="TrendingDate">
+		</div>
+		<div class="mb-3">
+			<label for="Title" class="form-label">Title</label> 
+			<input type="email" class="form-control" id="Title">
+		</div>
+		<div class="mb-3">
+			<label for="PublishTime" class="form-label">PublishTime</label> 
+			<input type="email" class="form-control"  placeholder="yyyy-mm-dd" id="PublishTime">
+		</div>
+		<div class="mb-3">
+			<label for="Tags" class="form-label">Tags</label> 
+			<input type="email" class="form-control" id="Tags">
+		</div>
+		<div class="mb-3">
+			<label for="Views" class="form-label">Views</label> 
+			<input type="email" class="form-control" id="Views">
+		</div>
+		<div class="mb-3">
+			<label for="CommentCount" class="form-label">CommentCount</label> 
+			<input type="email" class="form-control" id="CommentCount">
+		</div>
+		<div class="mb-3">
+			<label for="ThumbnailLink" class="form-label">ThumbnailLink</label> 
+			<input type="email" class="form-control" id="ThumbnailLink">
+		</div>
+		<div class="mb-3">
+			<label for="Dislikes" class="form-label">Dislikes</label> 
+			<input type="email" class="form-control" id="Dislikes">
+		</div>
+		<div class="mb-3">
+			<label for="ThumbnailLink" class="form-label">ThumbnailLink</label> 
+			<input type="email" class="form-control" id="ThumbnailLink">
+		</div>
+		<div class="mb-3">
+			<label for="CommentsDisabled" class="form-label">CommentsDisabled</label> 
+			<input type="email" class="form-control" id="CommentsDisabled">
+		</div>
+		<div class="mb-3">
+			<label for="RatingsDisabled" class="form-label">RatingsDisabled</label> 
+			<input type="email" class="form-control" id="RatingsDisabled">
+		</div>
+		<div class="mb-3">
+			<label for="VideoErrorOrRemoved" class="form-label">VideoErrorOrRemoved</label> 
+			<input type="email" class="form-control" id="VideoErrorOrRemoved">
+		</div>
+		<div class="mb-3">
+			<label for="Description" class="form-label">Description</label> 
+			<input type="email" class="form-control" id="Description">
+		</div>
+		<div class="mb-3">
+			<label for="CategoryId" class="form-label">CategoryId</label> 
+			<input type="email" class="form-control" id="CategoryId">
+		</div>
+		<div class="mb-3">
+			<label for="CountryId" class="form-label">CountryId</label> 
+			<input type="email" class="form-control" id="CountryId">
+		</div>
+		<div class="mb-3">
+			<label for="UserId" class="form-label">UserId</label> 
+			<input type="email" class="form-control" id="UserId">
+		</div>
+		
+		<input type="submit" class="btn btn-primary">
+		<!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+			
+		<!-- <p>
         <h2><label for="TrendingDate">TrendingDate (yyyy-mm-dd)</label></h2> <input
             id="TrendingDate" name="TrendingDate" value="">
         </p>
@@ -29,7 +123,7 @@
         <p>
         <h2><label for="PublishTime">PublishTime (yyyy-mm-dd)</label></h2> <input
             id="PublishTime" name="PublishTime" value="">
-        </p>
+        </p> 
         <p>
         <h2><label for="Tags">Tags</label></h2> <input id="Tags" name="Tags" value="">
         </p>
@@ -79,13 +173,13 @@
         </p>
         <p>
             <input type="submit" class="btn btn-lg btn-primary">
-        </p>
+        </p>-->
     </form>
     <br/>
     <br/>
     <p>
     <div class="alert alert-success" role="alert">
-        <span id="successMessage"><b>${messages.success}</b></span>
+        <span id="successMessage">${messages.success}</span>
     </div>
     </p>
 </div>

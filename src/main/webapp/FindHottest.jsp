@@ -15,25 +15,43 @@
 <body>
  <div class="container theme-showcase" role="main">
 	<form action="findhottest" method="post">
-	<div class="jumbotron">
+	<!-- <div class="jumbotron">
 		<h1>Search for Top 10 Hottest Video by Time</h1>
-	</div>
-		<p>
-			<label for="time">Time</label>
-			<input id="time" name="time" value="${fn:escapeXml(param.time)}">
-		</p>
-		<p>
-			<input type="submit" class="btn btn-lg btn-primary">
-			<br/><br/>
-		</p>
+	</div> -->
+	<nav class="navbar navbar-expand-lg navbar-info fixed-top bg-light">
+		<div class="container-fluid">
+			<span class="fs-4" style="margin-right: 2%;font-size:x-large" ><b>YouTubeTrends</b></span>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				  	<li class="nav-item">
+			        	<a href="findvideos" class="nav-link" aria-current="page"><b>Find Videos</b></a>
+			        </li>
+			        <li class="nav-item">
+			        	<a href="videocreate" class="nav-link" aria-current="page"><b>Create Video</b></a>
+			        </li>
+			        <li class="nav-item">
+			        	<a href="#" class="nav-link disabled"><b>Hottest Video</b> </a>
+			        </li>
+			       	<li class="nav-item">
+			        	<a href="findoptimaladstime" class="nav-link"><b>Optimal Ads Time</b></a>
+			        </li>
+		        </ul>
+			</div>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+		        <span class="navbar-toggler-icon"></span>
+		     </button>
+		</div>
+	</nav>
+		<div class="d-flex" style="margin-top:7%">
+			<!-- <label for="time" class="">Time</label> -->
+			<input id="time" name="time" class="form-control me-2" placeholder="Input time" value="${fn:escapeXml(param.time)}">
+			<input type="submit" class="btn btn-primary">
+		</div>
 	</form>
-	<br/>
-	<br/>
-		<div class="alert alert-info" role="alert">
-	<h2><span id="successMessage"><b>${messages.success}</b></span></h2>
+	<div class="alert alert-info mt-2" role="alert">
+		<span id="successMessage">${messages.success}</span>
 	</div>
-	<br/>
-	<h1>Matching Video</h1>
+	<h3>Matching Video</h3>
       <table class="table table-striped">
             <thead><tr>
                 <th>Title</th>

@@ -15,27 +15,67 @@
 <body>
  <div class="container theme-showcase" role="main">
 	<form action="findoptimaladstime" method="post">
-	<div class="jumbotron">
+	<nav class="navbar navbar-expand-lg navbar-info fixed-top bg-light">
+		<div class="container-fluid">
+			<span class="fs-4" style="margin-right: 2%;font-size:x-large" ><b>YouTubeTrends</b></span>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				  	<li class="nav-item">
+			        	<a href="findvideos" class="nav-link" aria-current="page"><b>Find Videos</b></a>
+			        </li>
+			        <li class="nav-item">
+			        	<a href="videocreate" class="nav-link" aria-current="page"><b>Create Video</b></a>
+			        </li>
+			        <li class="nav-item">
+			        	<a href="findhottest" class="nav-link"><b>Hottest Video</b> </a>
+			        </li>
+			       	<li class="nav-item">
+			        	<a href="#" class="nav-link disabled"><b>Optimal Ads Time</b></a>
+			        </li>
+		        </ul>
+			</div>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+		        <span class="navbar-toggler-icon"></span>
+		     </button>
+		</div>
+	</nav>
+	<!-- <div class="jumbotron">
 		<h1>List the Top N Optimal Ads Time</h1>
 		<h4>(Based on the Views of the Video Table)</h4>
 		<h3>If you want to cooperate with the Video Creator, you can find the contact information below .</h3>
-	</div>
-	<p>
-			<label for="topN">You want which rank videos info? </label>
-			<input id="topN" name="topN" value="${fn:escapeXml(param.time)}">
-		</p>	
+	</div> -->
+	<section class="py-3 text-center container">
+		<div class="row py-lg-2" style="margin-top:7%">
+			<div class="col-lg-6 col-md-8 mx-auto">
+				<h1 class="fw-light">The Top N Optimal Ads Time</h1>
+				<p class="lead text-muted">
+				List the Top N Optimal Ads Time Based on the Views of the Video Table.
+				If you want to cooperate with the Video Creator, you can find the contact information below .
+				</p>
+				<p class="lead text-muted">
+				<label for="topN"><b>Which rank videos information do you want?</b></label> 
+				</p>
+				<input type="email" class="form-control" id="topN" value="${fn:escapeXml(param.time)}">
+				<input type="submit" class="btn btn-primary my-2">
+			</div>
+		</div>
+	</section>
+		<%--  <label for="topN">Which rank videos information do you want? </label>
+			<input id="topN" name="topN" value="${fn:escapeXml(param.time)}"> 
+		 <div class="mb-3">
+			<label for="topN" class="form-label">Which rank videos information do you want?</label> 
+			<input type="email" class="form-control" id="topN" value="${fn:escapeXml(param.time)}">
+		</div>
 		<p>
-			<input type="submit" class="btn btn-lg btn-primary">
+			<input type="submit" class="btn btn-primary">
 			<br/><br/>
-		</p>
+		</p> --%> 
 	</form>
-	<br/>
-	<br/>
 		<div class="alert alert-info" role="alert">
-	<h2><span id="successMessage"><b>${messages.success}</b></span></h2>
-	</div>
+			<span id="successMessage">${messages.success}</span>
+		</div>
 	<br/>
-	<h1>Top N Ads Time(Including Video Info)</h1>
+	<!-- <h3>Top N Ads Time(Including Video Info)</h3> -->
       <table class="table table-striped">
             <thead><tr>
             	<th>Views</th>

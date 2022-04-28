@@ -15,16 +15,18 @@
 <body>
  <div class="container theme-showcase" role="main">
 	<!-- <form action="findvideos" method="post"> -->
-	<div class="">
+	<!-- <div class="">
 		<h1>Explore Trends</h1>
-	</div>
+	</div> -->
 	<nav class="navbar navbar-expand-lg navbar-info fixed-top bg-light">
 		<div class="container-fluid">
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-		        <span class="navbar-toggler-icon"></span>
-		     </button>
+			<span class="fs-4" style="margin-right: 2%;font-size:x-large" ><b>YouTubeTrends</b></span>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				  	<li class="nav-item">
+			        	<a href="findvideos" class="nav-link disabled" aria-current="page"><b>Find Videos</b></a>
+			          <!-- <a class="nav-link active" aria-current="page" href="#">Home</a> -->
+			        </li>
 			        <li class="nav-item">
 			        	<a href="videocreate" class="nav-link" aria-current="page"><b>Create Video</b></a>
 			          <!-- <a class="nav-link active" aria-current="page" href="#">Home</a> -->
@@ -36,12 +38,15 @@
 			        	<a href="findoptimaladstime" class="nav-link"><b>Optimal Ads Time</b></a>
 			        </li>
 		        </ul>
-		        <form class="d-flex">
-						<!-- <label for="title">title</label> -->
-					<input id="title" name="title" placeholder="Search videos by title" class="form-control me-2" style="margin-right: 4px;" type="search" aria-label="Search" value="${fn:escapeXml(param.title)}" />
-					<button type="submit" class="btn btn-outline-success">Search</button>
-				</form>
 			</div>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+		        <span class="navbar-toggler-icon"></span>
+		     </button>
+			<form class="d-flex" action="findvideos" method="post">
+					<!-- <label for="title">title</label> -->
+				<input id="title" name="title" placeholder="Search videos by title" class="form-control me-2" style="margin-right: 4px;" type="search" aria-label="Search" value="${fn:escapeXml(param.title)}" />
+				<button type="submit" class="btn btn-outline-success">Search</button>
+			</form>
 		</div>
 	</nav>
 		
@@ -60,7 +65,7 @@
 	<div class="alert alert-light" role="alert">
 		<span id="successMessage">${messages.success}</span>
 	</div>
-	<h1>Matching Video</h1>
+	<h3>Matching Video</h3>
       <table class="table table-striped">
             <thead><tr>
                 <th>Title</th>
